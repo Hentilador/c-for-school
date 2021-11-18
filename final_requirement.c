@@ -144,7 +144,7 @@ void initialize() //initialized the rand function and choosing the difficulty
         case '3':
             if(scoreA >= 5)
             {
-                difficulty = 2;
+                difficulty = 3;
                 return;
             }
             else
