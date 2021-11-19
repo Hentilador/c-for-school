@@ -119,7 +119,7 @@ void initialize() //initialized the rand function and choosing the difficulty
     {
         printf("\n  Current score: %u" ,scoreA);
     }
-    printf("\n3. Difficult (0 - 10");
+    printf("\n3. Difficult (0 - 10)");
     if(scoreD != 0)
     {
         printf("\n  Current score: %u" ,scoreD);
