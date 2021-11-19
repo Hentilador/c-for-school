@@ -13,7 +13,7 @@ void gameDiff();
 void delay(unsigned nos);
 
 //global declarations
-int difficulty=0,randy=0,lucky=0,i,champion=0;
+int difficulty=0,randy=0,lucky=0,i,champion=0,instruction=0;
 unsigned int scoreE=0,scoreA=0,scoreD=0; //scores for each difficulty
 char key; //keypress variable
 time_t t; //time
@@ -33,6 +33,18 @@ int main()
     //if the key press is ENTER it will start, and if not it will go to label Begin:
     if(key == 13)
     {
+        if(instruction == 0)
+        {
+            system("cls");
+            printf("Instructions:\n");
+            printf("In Hi-Lo you will be shown a random initial number from 0 to 100 in easy, 0 to\n");
+            printf("35 in average, and 0 to 10 in difficult. There will also be a random hidden number\n");
+            printf("which will be compared to the initial number, you will guess if the hidden number is\n");
+            printf("Higher or Lower than the initial number.\n\n");
+            instruction++;
+            printf("Press any key to Continue...");
+            getch();
+        }
         initialize();
     }
     else
@@ -97,17 +109,17 @@ void initialize() //initialized the rand function and choosing the difficulty
     system("cls");
     srand((unsigned) time(&t));
     printf("Choose a Difficulty");
-    printf("\n1. Easy");
+    printf("\n1. Easy (0 - 100)");
     if(scoreE != 0)
     {
         printf("\n  Current score: %u" ,scoreE);
     }
-    printf("\n2. Average");
+    printf("\n2. Average (0 - 35)");
     if(scoreA != 0)
     {
         printf("\n  Current score: %u" ,scoreA);
     }
-    printf("\n3. Difficult");
+    printf("\n3. Difficult (0 - 10");
     if(scoreD != 0)
     {
         printf("\n  Current score: %u" ,scoreD);
@@ -122,7 +134,7 @@ void initialize() //initialized the rand function and choosing the difficulty
             break;
 
         case '2':
-            if(scoreE >= 10)
+            if(scoreE >= 100)
             {
                 difficulty = 2;
                 return;
@@ -130,7 +142,7 @@ void initialize() //initialized the rand function and choosing the difficulty
             else
             {
                 system("cls");
-                printf("You need to score at least 10 in Easy Difficulty");
+                printf("You need to score at least 100 in Easy Difficulty");
                 if(scoreE != 0)
                 {
                     printf("\n\nCurrent score: %u" ,scoreE);
@@ -142,7 +154,7 @@ void initialize() //initialized the rand function and choosing the difficulty
             break;
 
         case '3':
-            if(scoreA >= 5)
+            if(scoreA >= 50)
             {
                 difficulty = 3;
                 return;
@@ -150,7 +162,7 @@ void initialize() //initialized the rand function and choosing the difficulty
             else
             {
                 system("cls");
-                printf("You need to score at least 5 in Average Difficulty");
+                printf("You need to score at least 50 in Average Difficulty");
                 if(scoreE != 0)
                 {
                     printf("\n\nCurrent score: %u" ,scoreA);
@@ -167,11 +179,11 @@ void initialize() //initialized the rand function and choosing the difficulty
     }
 }
 
-void gameEz()
+void gameEz() //TODO:
 { 
     geasy:
     randy = rand()%100+1;
-    for(i = 0;i < 3;i++)
+    for(i = 0;i < 3;i++) //Loading Screen
     {
         system("cls");
         printf("Loading");
@@ -211,7 +223,7 @@ void gameEz()
                 printf("Correct! The number is %d" ,lucky);
                 if(scoreE != 0)
                 {
-                    scoreE *= 2;
+                    scoreE *= 4;
                 }
                 else
                 {
@@ -274,7 +286,7 @@ void gameEz()
                 printf("Correct! The number is %d" ,lucky);
                 if(scoreE != 0)
                 {
-                    scoreE *= 2;
+                    scoreE *= 4;
                 }
                 else
                 {
@@ -380,7 +392,7 @@ void gameAve() //TODO:
                 printf("Correct! The number is %d" ,lucky);
                 if(scoreA != 0)
                 {
-                    scoreA *= 2;
+                    scoreA *= 3;
                 }
                 else
                 {
@@ -443,7 +455,7 @@ void gameAve() //TODO:
                 printf("Correct! The number is %d" ,lucky);
                 if(scoreA != 0)
                 {
-                    scoreA *= 2;
+                    scoreA *= 3;
                 }
                 else
                 {
@@ -508,7 +520,7 @@ void gameAve() //TODO:
 void gameDiff() //TODO:
 { 
     gdifficult:
-    if(scoreD >= 5)
+    if(scoreD >= 10)
     {
         for(int i = 0; i < 100; i++)
         {
